@@ -10,6 +10,10 @@ def initialize(album_details)
   @id = album_details['id'].to_i
   @name = album_details['name']
   @genre = album_details['genre']
+  #artist_id will always be populated as
+  #an album can't exist without an artist
+  #whenever an album object is created, it needs an artist
+  #in the console, we've set up the variable value using an existing artist object
   @artist_id = album_details['artist_id'].to_i
 end
 

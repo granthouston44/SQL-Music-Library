@@ -52,6 +52,10 @@ attr_reader :id
 
   def albums
     sql = "SELECT * FROM albums WHERE artist_id = $1"
+    #just @id here and not artist_id as we are already in the artist class
+    #the @artist_id just points to the artist id by calling artist.id in the console
+    #when setting up the album object
+    #tehrefore we can skip this step but just calling @id as its the same 
     values = [@id]
     artist = SqlRunner.run(sql, values)
     return Album.new(artist[0])

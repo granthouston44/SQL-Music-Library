@@ -27,10 +27,12 @@ artist1 = Artist.new({
       album2 = Album.new({
         'name' => 'Back in Black',
         'genre' => 'Hard Rock',
+        #this is how we will always have an artist_id in albums
+        #we're linking the album table here by calling the artist object id
         'artist_id' => artist2.id
         })
 
       album2.save()
-      
+
         binding.pry
         nil
