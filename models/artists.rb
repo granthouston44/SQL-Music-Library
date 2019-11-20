@@ -50,6 +50,12 @@ attr_reader :id
     return Artist.new(artists[0])
   end
 
+  def albums
+    sql = "SELECT * FROM albums WHERE artist_id = $1"
+    values = [@id]
+    artist = SqlRunner.run(sql, values)
+    return Album.new(artist[0])
+  end
 
 
 end
