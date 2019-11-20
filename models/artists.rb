@@ -46,6 +46,7 @@ attr_reader :id
     sql = "SELECT * FROM artists WHERE id = $1"
     values = [id]
     artists = SqlRunner.run(sql, values)
+    return nil if artists.count == 0
     return Artist.new(artists[0])
   end
 

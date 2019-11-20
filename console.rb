@@ -2,7 +2,7 @@ require('pry')
 require_relative('models/artists')
 require_relative('models/albums')
 
-# Albums.delete_all()
+Album.delete_all()
 Artist.delete_all()
 
 artist1 = Artist.new({
@@ -16,19 +16,21 @@ artist1 = Artist.new({
     artist1.save()
     artist2.save()
 
-    # album1 = Album.new({
-    #   'name' => 'Dude Ranch',
-    #   'genre' => 'Pop-punk',
-    #   'artist_id' => artist1.id
-    #   })
+    album1 = Album.new({
+      'name' => 'Dude Ranch',
+      'genre' => 'Pop-punk',
+      'artist_id' => artist1.id
+      })
 
-      # album1.save()
-      #
-      # album2 = Album.new({
-      #   'name' => 'Back in Black',
-      #   'genre' => 'Hard Rock',
-      #   'artist_id' => artist2.id
-      #   })
+      album1.save()
 
+      album2 = Album.new({
+        'name' => 'Back in Black',
+        'genre' => 'Hard Rock',
+        'artist_id' => artist2.id
+        })
+
+      album2.save()
+      
         binding.pry
         nil
