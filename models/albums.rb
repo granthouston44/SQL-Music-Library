@@ -58,9 +58,19 @@ def self.find_by_id(id)
 end
 
 def artist
+  #just id in sql, not artist id, as we are accessing
+  #the artists table, which only contains the id and name
+  #columns - therefore thats all we can access
   sql = "SELECT * FROM artists WHERE id = $1"
+  #as all we can access is the name or id, we already have
+  #the artist_id stored within an album object
+  #this was defined earlier in the code when defining
+  #album objects, and it is linked when the album object is created
+  #in console
   values = [@artist_id]
   artist = SqlRunner.run(sql, values)
+  #artitst[0] as the returned result is an array of hashes
+  #we want the first hash in the array so [0] will access that
   return Artist.new(artist[0])
 end
 

@@ -1,4 +1,5 @@
 require_relative('../db/SqlRunner')
+require_relative('albums')
 
 class Artist
 
@@ -27,6 +28,11 @@ attr_reader :id
   def Artist.all()
     sql = "SELECT * FROM artists"
     artists = SqlRunner.run(sql)
+    #we want to call a new artist object as it takes in a hash as a parameter
+    #this is evidenced in our initialize and our console
+    #the artists variable (result from SqlRunner) will return an array of hashes
+    #in the map, we are telling it for each entry in the array, create a new
+    #artist object using the hashes contained within the array
     return artists.map{|artist| Artist.new(artist)}
   end
 
@@ -44,7 +50,12 @@ attr_reader :id
 
   def Artist.find_by_id(id)
     sql = "SELECT * FROM artists WHERE id = $1"
+    #the value of @id would be nil because we're
+    #not passing an actual artist object - because
+    #its a class method
+    #therefore, there will be no id for it to return
     values = [id]
+
     artists = SqlRunner.run(sql, values)
     return nil if artists.count == 0
     return Artist.new(artists[0])
@@ -55,7 +66,7 @@ attr_reader :id
     #just @id here and not artist_id as we are already in the artist class
     #the @artist_id just points to the artist id by calling artist.id in the console
     #when setting up the album object
-    #tehrefore we can skip this step but just calling @id as its the same 
+    #tehrefore we can skip this step but just calling @id as its the same
     values = [@id]
     artist = SqlRunner.run(sql, values)
     return Album.new(artist[0])
